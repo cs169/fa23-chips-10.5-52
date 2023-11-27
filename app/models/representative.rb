@@ -7,21 +7,40 @@ class Representative < ApplicationRecord
     reps = []
 
     rep_info.officials.each_with_index do |official, index|
-      ocdid_temp = ''
-      title_temp = ''
+      office_details = process_office_details(rep_info, index)
+      address_details = process_address_details(official)
 
-      rep_info.offices.each do |office|
-        if office.official_indices.include? index
-          title_temp = office.name
-          ocdid_temp = office.division_id
-        end
-      end
-
-      rep = Representative.find_or_create_by!({ name: official.name, ocdid: ocdid_temp,
-          title: title_temp })
+      rep = Representative.find_or_initialize_by(name: official.name, ocdid: office_details[:ocdid])
+      rep.assign_attributes(office_details.merge(address_details))
+      rep.party = official.party if official.party
+      rep.photo_url = official.photo_url if official.photo_url
+      rep.save!
       reps.push(rep)
     end
 
     reps
+  end
+
+  def self.process_office_details(rep_info, index)
+    office_details = { ocdid: '', title: '' }
+    rep_info.offices.each do |office|
+      if office.official_indices.include?(index)
+        office_details[:title] = office.name
+        office_details[:ocdid] = office.division_id
+      end
+    end
+    office_details
+  end
+
+  def self.process_address_details(official)
+    return {} unless official.address
+
+    address = official.address.first
+    {
+      street: address.line1,
+      city:   address.city,
+      state:  address.state,
+      zip:    address.zip
+    }.compact
   end
 end
