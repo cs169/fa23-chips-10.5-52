@@ -1,0 +1,24 @@
+project:
+  name: 'CS169-fa23-52'
+  owner: 'fa23'
+  teamId: '52'
+  identities: {}
+  notifications:
+    email: 'sebrahimi@berkeley.edu'
+  members:
+    member1:
+      name: 'Saeed'
+      surname: 'Ebrahimi' 
+      githubUsername: 'sebrahimics'
+    member2:
+      name: 'Anisa'
+      surname: 'Ibnat' 
+      githubUsername: 'aibnat'
+    member3:
+      name: 'Dhruti'
+      surname: 'Pandya' 
+      githubUsername: 'dhrutip'
+    member4:
+      name: 'Shipransh'
+      surname: 'Agrawal' 
+      githubUsername: 'Shipransh'
