@@ -1,0 +1,23 @@
+%h1
+    = @representative.name
+%h2
+    = @representative.title
+.row
+    .col-md-6
+        %h3 Address
+        %p= @representative.street
+        %p= @representative.city
+        %p= @representative.state
+        %p= @representative.zip
+.col-md-6
+    %h3 Party
+    %p= @representative.party
+%h3 Photo
+- if @representative.photo_url.present?
+    %img{ src: @representative.photo_url, alt: "#{@representative.name} photo", class: 'img-fluid' }
+- else
+    %p No photo available
+.row.mt-4
+    .col-12
+        = link_to 'Back to Search', search_representatives_path, class: 'btn btn-primary'
+        = link_to 'View News Articles', representative_news_items_path(@representative), class: 'btn btn-secondary'
