@@ -16,6 +16,18 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    when /^New\s?York$/
+        '/state/NY'
+    
+    when /^Hamilton\s?County$/
+        '/search?address=Hamilton%20County,NY/'
+    
+    when /^Hawaii$/
+        '/state/HI'
+
+    when /^Hawaii\s?County$/
+        '/search?address=Hawaii%20County,HI'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
