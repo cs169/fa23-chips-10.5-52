@@ -2,7 +2,7 @@
     .row
         .col-md-8.offset-md-2
             .table-responsive-md.pt-5
-                %table.table
+                %table.table.table-striped.table-hover.alternate-row-colors#events
                     %caption Table of Campaign Finance
                     %thead.thead-dark
                         %tr
@@ -10,10 +10,10 @@
                             %th Party
                             %th Total Contributions
                             %th Total from Individuals
-                            %th Total from PACs
+                            %th Total from PAC
                             %th Total_receipts
                             %th State
-                            %td District
+                            %th District
                     %tbody
                         - @candidates.each_with_index do |candidate, index|
                             %tr
