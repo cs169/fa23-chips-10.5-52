@@ -11,7 +11,7 @@
                             %th Total Contributions
                             %th Total from Individuals
                             %th Total from PACs
-                            %th Total_receipts
+                            %th Total receipts
                             %th State
                             %th District
                     %tbody
@@ -23,5 +23,9 @@
                                 %td= candidate["total_from_individuals"]
                                 %td= candidate["total_from_pacs"]
                                 %td= candidate["total_receipts"]
-                                %td= candidate["state"].split('/').last.split('.').first.upcase
+                                %td
+                                    - if candidate["state"].present?
+                                        = candidate["state"].split('/').last.split('.').first.upcase
+                                    - else
+                                        = "N/A"
                                 %td= candidate["district"]
