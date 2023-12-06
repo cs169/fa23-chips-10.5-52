@@ -1,0 +1,27 @@
+.container-fluid
+    .row
+        .col-md-8.offset-md-2
+            .table-responsive-md.pt-5
+                %table.table
+                    %caption Table of Campaign Finance
+                    %thead.thead-dark
+                        %tr
+                            %th Name
+                            %th Party
+                            %th Total Contributions
+                            %th Total from Individuals
+                            %th Total from PACs
+                            %th Total_receipts
+                            %th State
+                            %td District
+                    %tbody
+                        - @candidates.each_with_index do |candidate, index|
+                            %tr
+                                %td= candidate["name"]
+                                %td= candidate["party"]
+                                %td= candidate["total_contributions"]
+                                %td= candidate["total_from_individuals"]
+                                %td= candidate["total_from_pacs"]
+                                %td= candidate["total_receipts"]
+                                %td= candidate["state"].split('/').last.split('.').first.upcase
+                                %td= candidate["district"]

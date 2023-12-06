@@ -4,8 +4,8 @@ require 'json'
 class CampaignFinance
   attr_reader :name, :party, :total_pac_contributions, 
   :total_from_individuals, :total_receipts, :state, :district, 
-  :committee, :status, :total_disbursements, :begin_cash, :end_cash, 
-  :total_refunds, :debts_owed, :date_coverage_from, :date_coverage_to
+  # :committee, :status, :total_disbursements, :begin_cash, :end_cash, 
+  # :total_refunds, :debts_owed, :date_coverage_from, :date_coverage_to
 
   def initialize(attributes={})
   @name = attributes['name']
@@ -15,15 +15,15 @@ class CampaignFinance
   @total_receipts = attributes['total_receipts']
   @state = attributes['state']
   @district = attributes['district']
-  @committee = attributes['committee']
-  @status = attributes['status']
-  @total_disbursements = attributes['total_disbursements']
-  @begin_cash = attributes['begin_cash']
-  @end_cash = attributes['end_cash']
-  @total_refunds = attributes['total_refunds']
-  @debts_owed = attributes['debts_owed']
-  @date_coverage_from = attributes['date_coverage_from']
-  @date_coverage_to = attributes['date_coverage_to']
+  # @committee = attributes['committee']
+  # @status = attributes['status']
+  # @total_disbursements = attributes['total_disbursements']
+  # @begin_cash = attributes['begin_cash']
+  # @end_cash = attributes['end_cash']
+  # @total_refunds = attributes['total_refunds']
+  # @debts_owed = attributes['debts_owed']
+  # @date_coverage_from = attributes['date_coverage_from']
+  # @date_coverage_to = attributes['date_coverage_to']
   end
 
   def self.fetch_data(cycle, category, api_key)
