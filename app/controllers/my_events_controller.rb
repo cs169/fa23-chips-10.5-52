@@ -5,6 +5,7 @@ class MyEventsController < SessionController
 
   def new
     @event = Event.new
+    Rails.logger.debug @event.inspect
   end
 
   def edit; end
