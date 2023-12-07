@@ -12,12 +12,12 @@ RSpec.describe CampaignFinance, type: :model do
 
     before do
       stub_request(:get, url)
-        . with(headers: { 'X-API-Key' => api_key })
+        .with(headers: { 'X-API-Key' => api_key })
         .to_return(status: 200, body: { results: [{ name: 'John Doe' }] }.to_json)
     end
 
     it 'fetches data from the API and parses it' do
-      result = CampaignFinance.fetch_data(cycle, category, api_key)
+      result = described_class.fetch_data(cycle, category, api_key)
       expect(result).to eq([{ 'name' => 'John Doe' }])
     end
 
@@ -27,11 +27,10 @@ RSpec.describe CampaignFinance, type: :model do
           .with(headers: { 'X-API-Key' => api_key })
           .to_return(status: 500, body: {}.to_json)
       end
-    
+
       it 'returns an empty array' do
-        expect(CampaignFinance.fetch_data(cycle, category, api_key)).to eq([])
+        expect(described_class.fetch_data(cycle, category, api_key)).to eq([])
       end
     end
-    
   end
 end

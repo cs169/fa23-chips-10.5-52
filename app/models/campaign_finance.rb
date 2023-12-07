@@ -45,7 +45,7 @@ class CampaignFinance
     rescue StandardError => e
       Rails.logger.debug { "Attempt #{attempts}: #{e.message}" }
       retry if attempts < max_attempts
-      [] 
+      []
     end
   end
 end
