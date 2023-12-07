@@ -2,8 +2,8 @@
 
 require 'json'
 class CampaignFinance
-  attr_reader :name, :party, :total_pac_contributions, 
-  :total_from_individuals, :total_receipts, :state, :district, 
+  attr_reader :name, :party, :total_pac_contributions,
+              :total_from_individuals, :total_receipts, :state, :district
 
   def initialize(attributes={})
     @name = attributes['name']
@@ -24,7 +24,7 @@ class CampaignFinance
     http = Net::HTTP.new(uri.host, uri.port)
 
     http.use_ssl = true
-    puts "http.use_ssl: #{http.use_ssl?}"
+    Rails.logger.debug { "http.use_ssl: #{http.use_ssl?}" }
 
     request = Net::HTTP::Get.new(uri)
 
@@ -32,21 +32,20 @@ class CampaignFinance
 
     max_attempts = 2
     attempts = 0
-  
+
     begin
       attempts += 1
       response = http.request(request)
-  
+
       if response.code == '200'
-        return JSON.parse(response.body)['results']
+        JSON.parse(response.body)['results']
       else
         raise 'API request failed'
       end
-    rescue => e
-      puts "Attempt #{attempts}: #{e.message}"
+    rescue StandardError => e
+      Rails.logger.debug { "Attempt #{attempts}: #{e.message}" }
       retry if attempts < max_attempts
-      return [] # Return an empty array if all attempts fail
+      [] 
     end
   end
 end
-
