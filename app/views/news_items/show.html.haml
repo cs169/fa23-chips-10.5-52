@@ -25,6 +25,14 @@
                     %dt.col-sm-3.text-md-right Last Updated:
                     %dt.col-sm-9
                         %time.timeago{ datetime: @news_item.updated_at.iso8601 }
+    = form_with(model: [ @representative, @news_item, Rating.new ], local: true) do |form|
+        = form.hidden_field :news_item_id, value: @news_item.id
+
+        .form-group
+            = form.label :rating, 'Your Rating (1-5)'
+            = form.number_field :rating, in: 1..5, step: 1, class: 'form-control'
+        = form.submit 'Submit Rating', class: 'btn btn-success'
+    
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
         .clearfix
             .float-right

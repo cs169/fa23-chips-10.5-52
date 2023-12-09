@@ -40,6 +40,13 @@ Rails.application.routes.draw do
                                                                       via: [:delete]
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
+    
+    
+    resources :representatives do
+      resources :news_items do
+        resources :ratings, only: [:create]
+      end
+    end
 
     #resources for campaign_finance
     get '/campaignfinances' => 'campaignfinances#index', :as => 'campaignfinances'

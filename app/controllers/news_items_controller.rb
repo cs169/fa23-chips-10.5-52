@@ -8,7 +8,10 @@ class NewsItemsController < ApplicationController
     @news_items = @representative.news_items
   end
 
-  def show; end
+  def show
+    @representative = Representative.find(params[:representative_id])
+    @news_item = NewsItem.find(params[:id])
+  end
 
   private
 

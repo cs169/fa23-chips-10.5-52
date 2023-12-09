@@ -9,4 +9,9 @@ class NewsItem < ApplicationRecord
       representative_id: representative_id
     )
   end
+
+  def update_average_rating
+    new_average = ratings.average(:rating).to_f
+    update(average_rating: new_average)
+  end
 end
